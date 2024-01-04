@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="代码随想录刷题Day04 LeetCode 24. 两两交换链表中的节点解题思路：见注释1234567891011121314151617181920212223242526class Solution &#123;    public ListNode swapPairs(ListNode head) &#123;        ListNode dummyhead &#x3D; new ListNode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录刷题Day04">
+<meta property="og:url" content="http://example.com/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day04/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="代码随想录刷题Day04 LeetCode 24. 两两交换链表中的节点解题思路：见注释1234567891011121314151617181920212223242526class Solution &#123;    public ListNode swapPairs(ListNode head) &#123;        ListNode dummyhead &#x3D; new ListNode">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2024-01-04T02:30:21.000Z">
+<meta property="article:modified_time" content="2024-01-04T03:06:53.813Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >代码随想录刷题Day04</title>
+
+<!-- Favicon -->
+
+    <link href='/Toplog.svg?v=2.1.8' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/Toplog.svg?v=2.1.8' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.1.8' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":null,"theme_version":"2.1.8","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"Toplog.svg","icon16":"Toplog.svg","icon32":"Toplog.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"prismjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-01-04 11:06:53"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.8" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/Toplog.svg">
+    
+    
+        <div class="trm-logo-text">
+            Async<span>Theme</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    Archives
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            代码随想录刷题Day04
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2024
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        YuiX
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                Wuhan
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:925312844@qq.com" class="trm-btn">
+            Contact Me
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            01/04
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            10:30
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            John Doe
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h3 id="代码随想录刷题Day04"><a href="#代码随想录刷题Day04" class="headerlink" title="代码随想录刷题Day04"></a>代码随想录刷题Day04</h3><hr>
+<h3 id="LeetCode-24-两两交换链表中的节点"><a href="#LeetCode-24-两两交换链表中的节点" class="headerlink" title="LeetCode 24. 两两交换链表中的节点"></a>LeetCode 24. 两两交换链表中的节点</h3><h5 id="解题思路：见注释"><a href="#解题思路：见注释" class="headerlink" title="解题思路：见注释"></a>解题思路：见注释</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummyhead</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummyhead.next = head;<span class="comment">//虚拟头结点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">curr</span>  <span class="operator">=</span> dummyhead;</span><br><span class="line">        <span class="keyword">while</span>(curr.next!=<span class="literal">null</span>&amp;&amp;curr.next.next!=<span class="literal">null</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//交换过程 以链表 1-&gt;2-&gt;3-&gt;4为例</span></span><br><span class="line">            <span class="comment">//1.先保存结点1(原因是将头结点curr指向结点2后，会无法找到结点1，因此要先保存)</span></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">temp1</span> <span class="operator">=</span> curr.next;</span><br><span class="line">            <span class="comment">//2.保存temp2的原因见5</span></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">temp2</span> <span class="operator">=</span> curr.next.next.next;</span><br><span class="line">            <span class="comment">//3.将虚拟头结点指向结点2</span></span><br><span class="line">            curr.next = temp1.next;</span><br><span class="line">            <span class="comment">//4.结点2指向结点1</span></span><br><span class="line">            curr.next.next = temp1;</span><br><span class="line">            <span class="comment">//5.结点1要指向结点3，(结点2已经指向结点3了，因此要保存结点3的位置)</span></span><br><span class="line">            curr.next.next.next = temp2;</span><br><span class="line">            <span class="comment">//6.移动curr到结点2</span></span><br><span class="line">            curr = curr.next.next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyhead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="LeetCode-19-删除链表的倒数第-N-个结点"><a href="#LeetCode-19-删除链表的倒数第-N-个结点" class="headerlink" title="LeetCode 19. 删除链表的倒数第 N 个结点"></a>LeetCode 19. 删除链表的倒数第 N 个结点</h3><h5 id="解题思路：双指针方法，first从头结点先走N步后，slow指针开始移动，当first走到尾结点，那么slow指针指向的就是倒数第N个结点"><a href="#解题思路：双指针方法，first从头结点先走N步后，slow指针开始移动，当first走到尾结点，那么slow指针指向的就是倒数第N个结点" class="headerlink" title="解题思路：双指针方法，first从头结点先走N步后，slow指针开始移动，当first走到尾结点，那么slow指针指向的就是倒数第N个结点"></a>解题思路：双指针方法，first从头结点先走N步后，slow指针开始移动，当first走到尾结点，那么slow指针指向的就是倒数第N个结点</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">//双指针，first先移动n步。slow为虚拟头结点，开始与first同步移动，直到first走到末尾。slow指向的结点就是倒数第n个结点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummyhead</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummyhead.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummyhead;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">curr</span> <span class="operator">=</span> dummyhead;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            pre = pre.next; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(pre.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        curr.next = curr.next.next;</span><br><span class="line">        <span class="keyword">return</span> dummyhead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="LeetCode-面试题-02-07-链表相交"><a href="#LeetCode-面试题-02-07-链表相交" class="headerlink" title="LeetCode 面试题 02.07. 链表相交"></a>LeetCode 面试题 02.07. 链表相交</h3><h5 id="解题思路：链表交点之后的长度都是相同的。所以"><a href="#解题思路：链表交点之后的长度都是相同的。所以" class="headerlink" title="解题思路：链表交点之后的长度都是相同的。所以"></a>解题思路：链表交点之后的长度都是相同的。所以</h5><p>​					1.先确定那个链表长度更长</p>
+<p>​					2.在计算两个链表长度的差值gap，让较长的链表先走gap步</p>
+<p>​	                3.经过1-2后，两个链表等长了，同步遍历，如果有相等的点即为相交点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> &#123;</span><br><span class="line">        <span class="comment">//要将headA与headB相交点前面的长度等长再遍历即可,要先确定那个链表长</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lenA</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">lenB</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">la</span> <span class="operator">=</span> headA;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">lb</span> <span class="operator">=</span> headB;</span><br><span class="line">        <span class="keyword">while</span>(la!=<span class="literal">null</span>)&#123;</span><br><span class="line">            lenA++;</span><br><span class="line">            la  = la.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(lb!=<span class="literal">null</span>)&#123;</span><br><span class="line">            lenB++;</span><br><span class="line">            lb = lb.next;</span><br><span class="line">        &#125;</span><br><span class="line">        la = headA;</span><br><span class="line">        lb = headB;</span><br><span class="line">        <span class="comment">//让la指向较长的链表，lenA为较长链表的长度</span></span><br><span class="line">        <span class="keyword">if</span>(lenB&gt;lenA)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">templen</span> <span class="operator">=</span> lenB;</span><br><span class="line">            lenB = lenA;</span><br><span class="line">            lenA = templen;</span><br><span class="line"></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">tempNode</span> <span class="operator">=</span> lb;</span><br><span class="line">            lb = la;</span><br><span class="line">            la = tempNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 求长度差</span></span><br><span class="line">        <span class="comment">// x即为两个链表长度的差值；较长的链表先走x步。交点之后的链表长度相等</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">gap</span> <span class="operator">=</span> lenA - lenB;</span><br><span class="line">        <span class="comment">// 让curA和curB在同一起点上（末尾位置对齐）</span></span><br><span class="line">        <span class="keyword">while</span> (gap-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            la = la.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(la!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(la==lb)&#123;</span><br><span class="line">                <span class="keyword">return</span> la;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                la = la.next;</span><br><span class="line">                lb = lb.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="LeetCode-142-环形链表-II"><a href="#LeetCode-142-环形链表-II" class="headerlink" title="LeetCode 142. 环形链表 II"></a>LeetCode 142. 环形链表 II</h3><h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p><img src="/./%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day04%5C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>​							1.要确定是否有环，快慢指针fast，slow， fast每次走两步，slow每次走一步，如果有环fast一定会追上slow。</p>
+<p>​							2.确定入环点</p>
+<p>​								2.1 假设头结点到入环点的距离为X，入环点到快慢指针相遇的结点的距离为Y，快慢指针相遇的结点到入环点的距离为Z</p>
+<p>​										快指针在追上慢指针之前走过的距离为 X+n(Y+Z)</p>
+<pre><code>                                     满指针走过的距离为X+Y,fast走过的长度为slow的两倍
+</code></pre>
+<p>​										 X+Y+n(Y+Z) &#x3D; 2*(X+Y)&#x3D;》X+Y&#x3D;n(Y+Z) 要求入环点即要求X</p>
+<p>​										X &#x3D; (n-1)(Y+Z)+Z,当n&#x3D;1时X&#x3D;Z 两个指针一个从头结点出发，一个相遇点出发，同时到达入环点。</p>
+<p>​																	当n&gt;1时 Y+Z就是环的距离，相当于先转了n圈后，再从相遇的出发。与n&#x3D;1的情况一致</p>
+<p>​								综上，只要求出X&#x3D;Z即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="comment">//思路快慢指针法，pre指针走的距离为x(交点前的距离) n(y+z)环中知道与慢指针相遇的距离</span></span><br><span class="line">        <span class="comment">//满指指针slow的距离为x+y.要求交点的索引因此要求y</span></span><br><span class="line">        <span class="comment">//1.快慢指针能相遇，证明有环。2.有环在找入环点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">temp</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="comment">//快指针先走两步，如果pre.next = null;证明无环</span></span><br><span class="line">       <span class="keyword">while</span>(fast!=<span class="literal">null</span>&amp;&amp;fast.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">           fast= fast.next.next;</span><br><span class="line">           slow = slow.next;</span><br><span class="line">           <span class="keyword">if</span>(fast==slow)&#123;</span><br><span class="line">               <span class="comment">//证明有环</span></span><br><span class="line">               <span class="keyword">while</span>(temp!=slow)&#123;</span><br><span class="line">                   slow=slow.next;</span><br><span class="line">                   temp = temp.next;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> temp;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day03/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day03/" class="trm-anima-link">
+                    代码随想录刷题Day03
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/12/29</li>
+                <li>21:38</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v7.0.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                Theme - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.8
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.1.8"></script>
+
+</body>
+
+</html>
