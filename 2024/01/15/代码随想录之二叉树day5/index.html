@@ -7,16 +7,22 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2023/12/index.html">
+<meta name="description" content="代码随想录之二叉树Day05LeetCode 106.通过中序与后续遍历序列构造二叉树思路：由中序与后序确定二叉树的基本流程 1.后序可以确定根节点 2.根节点确定后回前序确定左右子树。 3.左右子树又分别重复步骤1.2  1.后序postorder确定”3“为根节点， 2.通过根节点切割中序遍历，“9”为左子树，“15,20,7”为右子树。 3.”15,20,7”通过后序确定20为根节点。 4.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录之二叉树day5">
+<meta property="og:url" content="http://example.com/2024/01/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91day5/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="代码随想录之二叉树Day05LeetCode 106.通过中序与后续遍历序列构造二叉树思路：由中序与后序确定二叉树的基本流程 1.后序可以确定根节点 2.根节点确定后回前序确定左右子树。 3.左右子树又分别重复步骤1.2  1.后序postorder确定”3“为根节点， 2.通过根节点切割中序遍历，“9”为左子树，“15,20,7”为右子树。 3.”15,20,7”通过后序确定20为根节点。 4.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2024-01-15T12:22:18.000Z">
+<meta property="article:modified_time" content="2024-01-15T14:17:51.889Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
-<title >Hexo</title>
+<title >代码随想录之二叉树day5</title>
 
 <!-- Favicon -->
 
@@ -59,7 +65,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":null,"theme_version":"2.1.8","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"Toplog.svg","icon16":"Toplog.svg","icon32":"Toplog.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"prismjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2024-01-19 16:01:04"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-01-15 22:17:51"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.8" id="trm-switch-style">
@@ -204,10 +210,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article archive
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            云间连下榻，<br>天上接行杯。
+                            代码随想录之二叉树day5
                         </h1>
 
                         
@@ -217,7 +223,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        archives
+                                        2024
                                     </span>
                                 </li>
                             </ul>
@@ -303,151 +309,129 @@
             
             <div class="trm-page-content col-lg-8">
                 <div id="trm-content" class="trm-content">
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                
-                    <ul class="row trm-list" style="margin-bottom: 0px;"><li class="col-lg-4 trm-list-item" style="margin: 6px 0;"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">（11）</span></li><li class="col-lg-4 trm-list-item" style="margin: 6px 0;"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">（4）</span></li></ul>
-                
-            </div>
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            01/15
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            20:22
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            John Doe
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="代码随想录之二叉树Day05"><a href="#代码随想录之二叉树Day05" class="headerlink" title="代码随想录之二叉树Day05"></a>代码随想录之二叉树Day05</h2><h3 id="LeetCode-106-通过中序与后续遍历序列构造二叉树"><a href="#LeetCode-106-通过中序与后续遍历序列构造二叉树" class="headerlink" title="LeetCode 106.通过中序与后续遍历序列构造二叉树"></a>LeetCode 106.通过中序与后续遍历序列构造二叉树</h3><p><strong>思路</strong>：由中序与后序确定二叉树的基本流程</p>
+<p>1.后序可以确定根节点</p>
+<p>2.根节点确定后回前序确定左右子树。</p>
+<p>3.左右子树又分别重复步骤1.2</p>
+<p><img src="F:\Hexblog\source_posts\代码随想录之二叉树day5\中序与后续确定一颗二叉树.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>1.后序postorder确定”3“为根节点，</p>
+<p>2.通过根节点切割中序遍历，“9”为左子树，“15,20,7”为右子树。</p>
+<p>3.”15,20,7”通过后序确定20为根节点。</p>
+<p>4.“20”为根节点，“15”为20的左孩子，7为20的右孩子。唯一确定了一颗二叉树。</p>
+<p><strong>代码思路</strong>：</p>
+<p>​				1.如果后序数组为0，空节点。</p>
+<p>​				2.后序数组的最后一个元素为根节点</p>
+<p>​				3.找中序数组位置作为切割点。</p>
+<p>​				4.切割中序</p>
+<p>​				5.切割后序</p>
+<p>​				6.递归处理左区间和右区间。</p>
+<p><strong>伪代码</strong>：</p>
+<p><strong>需要注意的点，在切割数组的，要注意数组边界</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeNode GetTree(inorder,postorder)//递归函数入口</span><br><span class="line">if(postorder.length==0) return null//递归的终止条件。</span><br><span class="line">lastpost = postorder[postorder.length-1];//获取后序的最后一个元素为根节点。</span><br><span class="line">root = new TreeNode(lastpost)//初始化根节点。</span><br><span class="line">if(postorder.length==1) return root;</span><br><span class="line">int index = 0;</span><br><span class="line">for(...)&#123;&#125;//找lastpost在中序遍历中的位置赋给index。通过index切割中序数组</span><br><span class="line">切中序，得到左中序数组(左子树)和右中序(右子树)</span><br><span class="line">切后序，可以通过左中序数组的长度去切割后序数组。</span><br><span class="line">root.left = getTree(左中序，左后序)</span><br><span class="line">root.right = getTree(右中序，右后序)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<!-- history -->
 
-<div class="row">
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
     <div class="col-lg-12">
         <!-- title -->
         <h5 class="trm-title-with-divider">
-            
-                Archive for 2023
-            
-            <span data-number="01"></span>
+            Other Articles
+            <span data-number="02"></span>
         </h5>
     </div>
-    <div class="col-lg-12">
-        <!-- timeline -->
-        <div class="trm-timeline">
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/01/17/%E4%BB%A3%E7%A0%81%E9%9A%8F%E5%BF%83%E5%BD%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91day6/" class="trm-cover-frame trm-anima-link">
             
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day03/" class="trm-anima-link">
-                                        代码随想录刷题Day03
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">12/29</li>
-                                        <li class="trm-accent-color">21:38</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
             </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98Day02/" class="trm-anima-link">
-                                        代码随想录刷题Day02
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">12/28</li>
-                                        <li class="trm-accent-color">21:49</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E5%88%B7%E9%A2%98%E6%89%93%E5%8D%A1Day01/" class="trm-anima-link">
-                                        
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">12/27</li>
-                                        <li class="trm-accent-color">19:47</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/12/09/hello-world/" class="trm-anima-link">
-                                        Hello World
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">12/09</li>
-                                        <li class="trm-accent-color">17:54</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
+            <h5>
+                <a href="/2024/01/17/%E4%BB%A3%E7%A0%81%E9%9A%8F%E5%BF%83%E5%BD%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91day6/" class="trm-anima-link">
+                    代码随心录之二叉树day6
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/01/17</li>
+                <li>13:07</li>
+                
+                
+            </ul>
         </div>
-        <!-- timeline end -->
     </div>
 </div>
-
-<!-- history end -->
-
-
-    <div class="trm-pagination">
-        <span class="page-number current">1</span>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/01/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98day03/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/01/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98day03/" class="trm-anima-link">
+                    代码随想录之二叉树刷题day03
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/01/11</li>
+                <li>10:32</li>
+                
+                
+            </ul>
+        </div>
     </div>
+</div>
+    
+</div>
 
-
+    
 
 
 
@@ -494,6 +478,10 @@
 <div class="trm-fixed-container">
     
     
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
     
     <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
         <i class="iconfont fas fa-arrow-up"></i>
@@ -525,6 +513,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
